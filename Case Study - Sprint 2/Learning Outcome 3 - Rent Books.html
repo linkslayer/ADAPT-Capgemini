@@ -9,7 +9,36 @@
                 else
                     alert("Enter Minimum 5 Characters");
             }
-            
+            function checkDate(){
+                var udate = document.getElementById("rdate").value;
+                var d = new Date();
+            }
+            function checkRten(){
+                var rten = document.getElementById("rten").value;
+                if (rten>30)
+                    alert("We cannot rent over 30 days SORRY!!!");
+                else
+                    alert("Rent Approved");
+            }
+            function getBooks(){
+                document.getElementById("bookavail").innerHTML = 5;
+            }
+            function checkNumBook(){
+                var qty = document.getElementById("numbook").value;
+                var bookavail = document.getElementById("bookavail").value;
+                if (qty >bookavail)
+                    alert("Number of books not available");
+                else
+                    alert("Books available");
+            }
+            function showRent(){
+                var uname = document.getElementById("uname").value;
+                var num_of_days =parseInt(document.getElementById("rten").value);
+                rent_amt = 100;
+                var quantity = parseInt(document.getElementById("numbooks").value);
+                rent = 100 * quantity * num_of_days;
+                alert("Thank You for Order" + uname);
+            }
         </script>
         <h2> <span style = "background-color: #000080; color: #ff6600">Rent Books</span></h2>
         <table>
@@ -32,23 +61,23 @@
             </tr>
             <tr>
                 <td>Rent Start Date</td>
-                <td> <input type = "text" placeholder = "dd-mm-yyyy" /> </td>
+                <td> <input type = "text" placeholder = "dd-mm-yyyy" id = "rdate"  /> </td>
             </tr>
             <tr>
                 <td>Rent Tenure</td>
-                <td> <input type = "text" id = "rten" /> </td>
+                <td> <input type = "text" id = "rten" onblur = "checkRten()" /> </td>
             </tr>
             <tr>
                 <td>Number of Books Available</td>
-                <td> <input type = "text" id = "bookavail" /> </td>
+                <td> <input type = "text" id = "bookavail" onload = "getBooks()" /> </td>
             </tr>
             <tr>
                 <td>Enter number of Books</td>
-                <td> <input = "text" id = "numbook" /> </td>
+                <td> <input = "text" id = "numbook" onblur = "checkNumBook()"/> </td>
             </tr>
             <tr>
                 <td></td>
-                <td> <input type = "button" value = "Submit Query" /> </td>
+                <td> <input type = "button" value = "Submit Query" onClick = "javascript:showRent()" /> </td>
             </tr>
         </table>
     </body>
