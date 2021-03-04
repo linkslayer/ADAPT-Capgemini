@@ -1,0 +1,55 @@
+<html>
+    <head> <title>Rent Books</title> </head>
+    <body>
+        <script type = "text/javascript">
+            function checkName(){
+                var uname= document.getElementById("uname").value;
+                if(/[a-zA-Z]{5,}/.test(uname))
+                    alert("Name Validated");
+                else
+                    alert("Enter Minimum 5 Characters");
+            }
+            
+        </script>
+        <h2> <span style = "background-color: #000080; color: #ff6600">Rent Books</span></h2>
+        <table>
+            <tr>
+                <td>Book Name</td>
+                <td>
+                    <select name = "bname">
+                        <option value = "html">HTML</option>
+                        <option value = "dbms">DBMS</option>
+                        <option value = "se">SE</option>
+                        <option value = "java">JAVA</option>
+                        <option value = "python">PYTHON</option>
+                        <option value = "ml">ML</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>User Name</td>
+                <td> <input type = "text" id = "uname" onblur = "checkName()" /> </td>
+            </tr>
+            <tr>
+                <td>Rent Start Date</td>
+                <td> <input type = "text" placeholder = "dd-mm-yyyy" /> </td>
+            </tr>
+            <tr>
+                <td>Rent Tenure</td>
+                <td> <input type = "text" id = "rten" /> </td>
+            </tr>
+            <tr>
+                <td>Number of Books Available</td>
+                <td> <input type = "text" id = "bookavail" /> </td>
+            </tr>
+            <tr>
+                <td>Enter number of Books</td>
+                <td> <input = "text" id = "numbook" /> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> <input type = "button" value = "Submit Query" /> </td>
+            </tr>
+        </table>
+    </body>
+</html>
