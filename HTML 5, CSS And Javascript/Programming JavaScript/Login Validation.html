@@ -1,0 +1,33 @@
+<html>
+    <head> <title> Login Validation </title> </head>
+    <body>
+        <script type = "text/javascript">
+            function UserLogin()
+            {
+                var user = document.getElementById("uname").value;
+                var password = document.getElementById("passw").value;
+                if(user == "admin")
+                  document.getElementById('info').innerHTML = "Valid user";
+                else
+                  document.getElementById('info').innerHTML = "Invalid user";
+            }
+        </script>
+        <form>
+        <h1 align = "center"> Login Page </h1>
+         <table align = "center">
+            <tr>
+              <td>User Name:</td>
+              <td><input id = "uname" type = "text" /></td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td><input id = "passw" type = "password" /></td>
+            </tr>
+            <tr>
+              <td><input type = "button" value = "Login" onclick = "UserLogin()" /></td>
+              <td><div id = "info"></div></td>
+            </tr>
+        </table>
+        </form>
+    </body>
+</html>
