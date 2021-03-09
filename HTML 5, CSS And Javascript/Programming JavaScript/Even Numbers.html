@@ -1,0 +1,17 @@
+<html>
+    <head> <title> Even Number Sum </title> </head>
+    <body onload = "evenNumSum()">
+        <h1>Display Even Number & Sum</h1>
+        <div id = "result"> </div>
+        <script type = "text/javascript">
+            function evenNumSum(){
+                var n = 0, s = 0;
+                while(n <= 20){
+                    s += n;
+                    n += 2;
+                }
+                document.getElementById('result').innerHTML = 'Total:' +s;
+            }
+        </script>
+    </body>
+</html>
