@@ -1,85 +1,107 @@
-<!-- Some of the functions are under development if you can come up with a better solution please implement it, copy from <html> tag -->
 <html>
-    <head> <title>Rent Books</title> </head>
-    <body>
-        <script type = "text/javascript">
-            function checkName(){
-                var uname= document.getElementById("uname").value;
-                if(/[a-zA-Z]{5,}/.test(uname))
-                    alert("Name Validated");
-                else
-                    alert("Enter Minimum 5 Characters");
-            }
-            function checkDate(){
-                var udate = document.getElementById("rdate").value;
-                var d = new Date();
-            }
-            function checkRten(){
-                var rten = document.getElementById("rten").value;
-                if (rten>30)
-                    alert("We cannot rent over 30 days SORRY!!!");
-                else
-                    alert("Rent Approved");
-            }
-            function getBooks(){
-                document.getElementById("bookavail").innerHTML = 5;
-            }
-            function checkNumBook(){
-                var qty = document.getElementById("numbook").value;
-                var bookavail = document.getElementById("bookavail").value;
-                if (qty >bookavail)
-                    alert("Number of books not available");
-                else
-                    alert("Books available");
-            }
-            function showRent(){
-                var uname = document.getElementById("uname").value;
-                var num_of_days =parseInt(document.getElementById("rten").value);
-                rent_amt = 100;
-                var quantity = parseInt(document.getElementById("numbooks").value);
-                rent = 100 * quantity * num_of_days;
-                alert("Thank You for Order" + uname);
-            }
-        </script>
-        <h2> <span style = "background-color: #000080; color: #ff6600">Rent Books</span></h2>
-        <table>
-            <tr>
-                <td>Book Name</td>
-                <td>
-                    <select name = "bname">
-                        <option value = "html">HTML</option>
-                        <option value = "dbms">DBMS</option>
-                        <option value = "se">SE</option>
-                        <option value = "java">JAVA</option>
-                        <option value = "python">PYTHON</option>
-                        <option value = "ml">ML</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>User Name</td>
-                <td> <input type = "text" id = "uname" onblur = "checkName()" /> </td>
-            </tr>
-            <tr>
-                <td>Rent Start Date</td>
-                <td> <input type = "text" placeholder = "dd-mm-yyyy" id = "rdate"  /> </td>
-            </tr>
-            <tr>
-                <td>Rent Tenure</td>
-                <td> <input type = "text" id = "rten" onblur = "checkRten()" /> </td>
-            </tr>
-            <tr>
-                <td>Number of Books Available</td>
-                <td> <input type = "text" id = "bookavail" onload = "getBooks()" /> </td>
-            </tr>
-            <tr>
-                <td>Enter number of Books</td>
-                <td> <input = "text" id = "numbook" onblur = "checkNumBook()"/> </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td> <input type = "button" value = "Submit Query" onClick = "javascript:showRent()" /> </td>
-            </tr>
-        </table>
+    <head><title>Rent Books</title></head>
+    <body onload="setBooks()">
+        <h2><span style="background-color: #000080; color: #ff6600">Rent Books</span></h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Book Name</td>
+                        <td>
+                            <select name="bname" id="bookname">
+                                <option value="html">HTML</option>
+                                <option value="dbms">DBMS</option>        
+                                <option value="se">SE</option>
+                                <option value="java">JAVA</option>
+                                <option value="python">PYTHON</option>
+                                <option value="ml">ML</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>User Name</td>
+                        <td><input type="text" id="uname" onblur = "checkName()"/></td>
+                    </tr>
+                    <tr>
+                        <td>Rent Start Date</td>
+                        <td><input type="text" placeholder="dd-mm-yyyy" id="rdate" onblur="checkDate()" /></td>
+                    </tr>
+                    <tr>
+                        <td>Rent Tenure</td>
+                        <td><input type="text" id="rentT" onblur = "rentCheck()"></td>
+                    </tr>
+                    <tr>
+                        <td>Number of Books Available</td>
+                        <td><input type="text" id="booksavail" /></td>
+                    </tr>
+                    <tr>
+                        <td>Enter number of Books</td>
+                        <td><input type="text" id="numbooks" onblur="checkBook()"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="button" value="Submit Query" onclick=""/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                function checkName(){
+                    var uname = document.getElementById("uname").value;
+                    var reg = /[a-zA-z]{5,}/
+                    if (!reg.test(uname)){
+                        alert("Enter minimum 5 characters");
+                        return
+                    }
+                }
+                function checkDate(){
+                    var rdate = document.getElementById("rdate").value;
+                    var date = new Date();
+                    var day = date.getDate();
+                    var month = date.getMonth();
+                    var year = date.getFullYear();
+                    rdate = rdate.split("-");
+                    if (rdate[2]>= year){
+                        if (rdate[1]>=month && rdate[1] <=12){
+                            if(rdate[0]>=day && rdate[0] <= 31){
+                                alert("valid date");
+                            } else {
+                                alert("Invalid date");
+                                return false;
+                            }
+                        } else {
+                            alert("Invalid date");
+                            return false;
+                        }
+                    } else {
+                        alert("Invalid date");
+                        return false;
+                    }
+                }
+                function rentCheck(){
+                    var rt = document.getElementById("rentT").value;
+                    if (rt > 30 ){
+                        alert("We cannot rent over 30 days SORRY!!!");
+                        return false;
+                    }
+                }
+                function setBooks(){
+                    document.getElementById("booksavail").value = 5;
+                }
+                function checkBook(){
+                    var avail = 5
+                    var forent = document.getElementById("numbooks").value;
+                    if (forent > avail){
+                        alert("Cannot rent more than available books");
+                        return false
+                    }
+                }
+                function showRent(){
+                    var uname = document.getElementById("uname").value;
+                    var num_of_days =parseInt(document.getElementById("renT").value);
+                    rent_amt = 100;
+                    var quantity = parseInt(document.getElementById("numbooks").value);
+                    rent = 100 * quantity * num_of_days;
+                    alert("Thank You for Order" + uname);
+                }
+            </script>
     </body>
 </html>
