@@ -17,7 +17,7 @@ public class Source {
     	if(r1>=3 && r2<=1000 && r1<r2){
     	    for(int i=r1;i<r2;i++){
     	        int count=0;
-    	        for(int j=1;j<r2;j++){
+    	        for(int j=1;j<=r2;j++){
     	            if (i%j==0){
     	                count++;
     	            }
