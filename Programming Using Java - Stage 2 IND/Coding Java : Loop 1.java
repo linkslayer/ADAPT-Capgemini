@@ -19,7 +19,7 @@ public class Source {
 		    while(num>0){
 		        bin[index] = num % 2;
 		        num /= 2;
-            index++;
+                        index++;
 		    }
 		    for(int i=index-1;i>=0;i--){
 		        System.out.print(bin[i]);
