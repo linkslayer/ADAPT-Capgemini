@@ -1,48 +1,56 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Source {
-	public List<Integer> getSumOfListElements(List<Integer> first,List<Integer> second){
-	    //CODE HERE
-	    List<Integer> sum=new ArrayList<Integer>();
-        int n;
-        if(first.size()>second.size()){
-            n=first.size();
-            sum=first;
+	public static List<Integer> getSumOfListElements(List<Integer> first,List<Integer> second){
+	    List<Integer> result = new ArrayList<Integer>();
+	    if (first == null && second == null )
+	    {
+	        return result;
+	    }
+	    if (first == null) 
+	    {
+	        return second;
         }
-        else{
-            n=second.size();
-            sum=second;
+        if (second == null) 
+        {
+            return first;
         }
-        for(int i=0;i<(n-Math.abs(first.size()-second.size()));i++){
-            sum.set(i,first.get(i)+second.get(i));
+	    int s1 = first.size();
+        int s2 = second.size();
+        int max = (s1>=s2) ? s1 : s2;
+        for(int i=0; i<max-Math.abs(s1-s2); i++)
+        {
+            result.add(i, first.get(i) + second.get(i));
         }
-        return sum;
+        for(int i=result.size(); i<max; i++)
+        {
+            if(first.size() == max)
+                result.add(i, first.get(i));
+            else if(second.size() == max)
+                result.add(i, second.get(i));
+        }
+        return result;
 	}
 
 	public static void main(String[] args) {
-	    //CODE HERE
-	    Scanner sc=new Scanner(System.in);
-        Source src=new Source();
-        String str1,str2;
-        str1=sc.nextLine();
-        str2=sc.nextLine();
-        if(str1.length()!=0 && str2.length()!=0){
-            String input[]=str1.split(", ");
-            List<Integer> al1=new ArrayList<Integer>();
-            List<Integer> al2=new ArrayList<Integer>();
-            List<Integer> sum=new ArrayList<Integer>();
-            for(int i=0;i<input.length;i++)
-                al1.add(Integer.parseInt(input[i]));
-            input=str2.split(", ");
-            for(int i=0;i<input.length;i++)
-                al2.add(Integer.parseInt(input[i]));
-            sum=src.getSumOfListElements(al1,al2);
-            System.out.print("[");
-            for(int i=0;i<sum.size()-1;i++)
-                System.out.print(sum.get(i)+", ");
-            System.out.print(sum.get(sum.size()-1)+"]");
-        }
-	} 
+	    Scanner sc = new Scanner(System.in);
+	    List<Integer> first = new ArrayList<Integer>();
+	    List<Integer> second = new ArrayList<Integer>();
+	    String s1 = sc.nextLine();
+	    s1 = s1.substring(1, s1.length()-1);
+        String nums1[] = s1.split(", ");
+        for(int i=0; i< nums1.length; i++)
+	    {
+	        first.add(Integer.parseInt(nums1[i]));
+	    }
+
+        String s2 = sc.nextLine();
+        s2 = s2.substring(1, s2.length()-1);
+        String nums2[] = s2.split(", ");
+        for(int i=0; i< nums2.length; i++)
+	    {
+	        second.add(Integer.parseInt(nums2[i]));
+	    }
+        System.out.println(getSumOfListElements(first, second));
+	}
 }
