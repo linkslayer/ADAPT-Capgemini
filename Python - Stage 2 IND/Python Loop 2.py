@@ -1,3 +1,4 @@
+# use python 3
 def main():
 	a = int(input())
 	b = int(input())
